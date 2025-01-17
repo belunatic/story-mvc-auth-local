@@ -8,21 +8,26 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
-    <nav><a href="/story">Story</a></nav>
+    <h1>Stories</h1>
+    <nav><a href="/todos">Todos</a></nav>
     <ul>
-    <% todos.forEach( el => { %>
-            <li class='todoItem' data-id='<%=el._id%>'>
+    <% stories.forEach( el => { %>
+            <li class='storyItems' data-id='<%=el._id%>'>
+                <h3><%= el.title %></h3>
+                <p><%= el.body%></p>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                 <span class='del'> Delete </span>
             </li>
     <% }) %>    
     </ul>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-
-    <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+    <form action="/story/createStory" method='POST'>
+        <input type="text" placeholder="title" name='title'>
+        <select name="status">
+            <option value="public" selected>Public</option>
+            <option value="private">Private</option>
+        </select>
+        <textarea id="story" name="body" rows="5" cols="33" placeholder="What on you mind today?"></textarea>
         <input type="submit">
     </form>
 

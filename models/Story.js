@@ -24,4 +24,4 @@ const StorySchema = new mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("Story", TodoSchema);
+module.exports = mongoose.model("Story", StorySchema);

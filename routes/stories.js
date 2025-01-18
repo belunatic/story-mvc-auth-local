@@ -5,6 +5,8 @@ const { ensureAuth } = require("../middleware/auth");
 
 router.get("/", ensureAuth, storyControllers.getStories);
 
+router.get("/allStories", ensureAuth, storyControllers.allStories);
+
 router.post("/createStory", storyControllers.createStory);
 
 // router.put("/markComplete", storyControllers.markComplete);

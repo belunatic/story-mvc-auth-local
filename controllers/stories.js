@@ -1,4 +1,5 @@
 const Story = require("../models/Story");
+const User = require("../models/User");
 
 module.exports = {
 	getStories: async (req, res) => {
@@ -7,6 +8,21 @@ module.exports = {
 			const StoryItems = await Story.find({ userId: req.user.id });
 			res.render("dashboard.ejs", {
 				stories: StoryItems,
+				user: req.user,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	},
+	allStories: async (req, res) => {
+		console.log(req.user);
+		try {
+			const StoryItems = await Story.find();
+			const userInfo = await User.find();
+			//get a helper function to get the author name
+			res.render("allStories.ejs", {
+				stories: StoryItems,
+				authors: userInfo,
 				user: req.user,
 			});
 		} catch (err) {

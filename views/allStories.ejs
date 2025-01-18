@@ -4,20 +4,21 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Your Story</title>
+		<title>All Stories</title>
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body>
 		<h1 style="text-transform: capitalize"><%= user.userName %> Stories</h1>
-		<nav>
-			<a href="/todos">Todos</a> <a href="/story/allStories">All Stories</a>
-		</nav>
+		<nav><a href="/todos">Todos</a> <a href="/story/">Dashboard</a></nav>
 		<ul>
-			<% stories.forEach( el => { %>
-			<li class="storyItems" data-id="<%=el._id%>">
-				<h3><%= el.title %> <span>(<%=el.status%>)</span></h3>
-				<p><%= el.body%></p>
-				<span class="del"> Delete </span>
+			<% stories.forEach(el => { %>
+			<li>
+				<h3><%= el.title %> <span>(<%= el.status %>)</span></h3>
+				<p><%= el.body %></p>
+				<p><%= authors[0]._id %> <%= el.userId %></p>
+				<% authors.forEach(author => { %>
+				<span>By <%= author._id === el.userId ? author.userName : '' %></span>
+				<% }) %>
 			</li>
 			<% }) %>
 		</ul>

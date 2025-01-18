@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Stories</h1>
+    <h1 style="text-transform: capitalize;"><%= user.userName %> Stories</h1>
     <nav><a href="/todos">Todos</a></nav>
     <ul>
     <% stories.forEach( el => { %>
             <li class='storyItems' data-id='<%=el._id%>'>
-                <h3><%= el.title %></h3>
+                <h3><%= el.title %> <span>(<%=el.status%>)</span></h3>
                 <p><%= el.body%></p>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                 <span class='del'> Delete </span>

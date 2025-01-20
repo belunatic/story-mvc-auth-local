@@ -3,7 +3,6 @@ const User = require("../models/User");
 
 module.exports = {
 	getStories: async (req, res) => {
-		console.log(req.user);
 		try {
 			const StoryItems = await Story.find({ userId: req.user.id });
 			res.render("dashboard.ejs", {
@@ -15,14 +14,18 @@ module.exports = {
 		}
 	},
 	allStories: async (req, res) => {
-		console.log(req.user);
 		try {
 			const StoryItems = await Story.find();
 			const userInfo = await User.find();
 			//get a helper function to get the author name
+			StoryItems.forEach((story) => {
+				const author = userInfo.find(
+					(user) => user._id.toString() === story.userId
+				);
+				story["author"] = author.userName;
+			});
 			res.render("allStories.ejs", {
 				stories: StoryItems,
-				authors: userInfo,
 				user: req.user,
 			});
 		} catch (err) {

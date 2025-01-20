@@ -15,10 +15,8 @@
 			<li>
 				<h3><%= el.title %> <span>(<%= el.status %>)</span></h3>
 				<p><%= el.body %></p>
-				<p><%= authors[0]._id %> <%= el.userId %></p>
-				<% authors.forEach(author => { %>
-				<span>By <%= author._id === el.userId ? author.userName : '' %></span>
-				<% }) %>
+				<span>By <%= el.author %></span>
+				<span class="del"> Delete </span>
 			</li>
 			<% }) %>
 		</ul>

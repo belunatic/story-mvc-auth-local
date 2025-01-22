@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>All Stories</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<h1 style="text-transform: capitalize"><%= user.userName %> Stories</h1>
+		<nav>
+			<a href="/todos">Todos</a> <a href="/story/">Dashboard</a>
+			<a href="allStories/">All Stories</a>
+		</nav>
+
+		<h3><%= theStory[0].title %> <span>(<%= theStory[0].status %>)</span></h3>
+		<p><%= theStory[0].body %></p>
+		<span>By <%= theStory[0].author %></span>
+
+		<script src="js/main.js"></script>
+	</body>
+</html>

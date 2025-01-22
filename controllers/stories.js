@@ -46,6 +46,22 @@ module.exports = {
 			console.log(err);
 		}
 	},
+	getStory: async (req, res) => {
+		try {
+			const story = await Story.find({ _id: req.params.id });
+			const userInfo = await User.find();
+			//get a helper function to get the author name
+			const author = userInfo.find(
+				(user) => user._id.toString() === story[0].userId
+			);
+			story[0].author = author.userName;
+			console.log(story);
+
+			res.render("story.ejs", { theStory: story, user: req.user });
+		} catch (err) {
+			console.log(err);
+		}
+	},
 	// markComplete: async (req, res) => {
 	// 	try {
 	// 		await Story.findOneAndUpdate(

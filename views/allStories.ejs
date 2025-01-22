@@ -14,7 +14,9 @@
 			<% stories.forEach(el => { %>
 			<li>
 				<h3><%= el.title %> <span>(<%= el.status %>)</span></h3>
-				<p><%= el.body %></p>
+				<p>
+					<%= el.body.slice(0,100)%>...<a href="<%= el._id %>">Read more</a>
+				</p>
 				<span>By <%= el.author %></span>
 				<span class="del"> Delete </span>
 			</li>

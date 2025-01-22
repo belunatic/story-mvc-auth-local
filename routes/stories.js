@@ -9,6 +9,8 @@ router.get("/allStories", ensureAuth, storyControllers.allStories);
 
 router.post("/createStory", storyControllers.createStory);
 
+router.get("/:id", storyControllers.getStory);
+
 // router.put("/markComplete", storyControllers.markComplete);
 
 // router.put("/markIncomplete", storyControllers.markIncomplete);

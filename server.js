@@ -7,6 +7,7 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
+const methodOverride = require("method-override");
 const mainRoutes = require("./routes/main");
 const todoRoutes = require("./routes/todos");
 const storyRoutes = require("./routes/stories");
@@ -22,6 +23,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 app.use(logger("dev"));
 // Sessions
 app.use(

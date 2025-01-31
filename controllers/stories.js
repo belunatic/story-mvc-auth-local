@@ -55,7 +55,6 @@ module.exports = {
 				(user) => user._id.toString() === story[0].userId
 			);
 			story[0].author = author.userName;
-			console.log(story);
 
 			res.render("story.ejs", { theStory: story, user: req.user });
 		} catch (err) {
@@ -90,14 +89,19 @@ module.exports = {
 	// 		console.log(err);
 	// 	}
 	// },
-	// deleteStory: async (req, res) => {
-	// 	console.log(req.body.StoryIdFromJSFile);
-	// 	try {
-	// 		await Story.findOneAndDelete({ _id: req.body.StoryIdFromJSFile });
-	// 		console.log("Deleted Story");
-	// 		res.json("Deleted It");
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// },
+	deleteStory: async (req, res) => {
+		console.log(req.params.id);
+		try {
+			//delete the story
+			await Story.findOneAndDelete({ _id: req.params.id });
+			console.log("Deleted Story");
+			res.redirect("/story");
+		} catch (err) {
+			console.log(err);
+			res.redirect("/story");
+		}
+	},
+	addStory: (req, res) => {
+		res.render("addStory.ejs", { user: req.user });
+	},
 };

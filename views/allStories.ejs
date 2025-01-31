@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>All Stories</title>
-		<link rel="stylesheet" href="css/style.css" />
-	</head>
+	<%- include('partials/head') %>
 	<body>
 		<h1 style="text-transform: capitalize"><%= user.userName %> Stories</h1>
 		<nav><a href="/todos">Todos</a> <a href="/story/">Dashboard</a></nav>
-		<ul>
+
+		<div class="row row-cols-1 row-cols-md-3 g-4">
 			<% stories.forEach(el => { %>
-			<li>
-				<h3><%= el.title %> <span>(<%= el.status %>)</span></h3>
-				<p>
-					<%= el.body.slice(0,100)%>...<a href="<%= el._id %>">Read more</a>
-				</p>
-				<span>By <%= el.author %></span>
-				<span class="del"> Delete </span>
-			</li>
+			<div class="col">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title"><%= el.title %></h5>
+						<p class="card-text"><%= el.body.slice(0,100)%>...</p>
+						<div class="d-flex flex-row">
+							<a href="#" class="btn btn-primary">Read More</a>
+							<% if (el.author === user.userName) { %>
+							<form
+								class="ms-2"
+								method="POST"
+								action="/story/deleteStory/<%=el._id%>?_method=DELETE">
+								<button type="submit" class="btn btn-primary">Delete</button>
+							</form>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
 			<% }) %>
-		</ul>
-
-		<form action="/story/createStory" method="POST">
-			<input type="text" placeholder="title" name="title" />
-			<select name="status">
-				<option value="public" selected>Public</option>
-				<option value="private">Private</option>
-			</select>
-			<textarea
-				id="story"
-				name="body"
-				rows="5"
-				cols="33"
-				placeholder="What on you mind today?"></textarea>
-			<input type="submit" />
-		</form>
-
-		<a href="/logout">Logout</a>
-
-		<script src="js/main.js"></script>
+		</div>
+		<%- include('partials/footer') %>
 	</body>
 </html>

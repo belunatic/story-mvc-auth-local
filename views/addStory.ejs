@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('partials/head') %>
+	<body>
+		<h1 style="text-transform: capitalize"><%= user.userName %> Stories</h1>
+		<nav><a href="/todos">Todos</a> <a href="/story/">Dashboard</a></nav>
+
+		<form action="/story/createStory" method="POST">
+			<div class="mb-3">
+				<label for="title" class="form-label">Title</label>
+				<input
+					type="text"
+					class="form-control"
+					id="title"
+					name="title"
+					placeholder="My Title" />
+			</div>
+			<div class="mb-3">
+				<select class="form-select" aria-label="status" name="status">
+					<option value="public" selected>Public</option>
+					<option value="private">Private</option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="body" class="form-label">Example textarea</label>
+				<textarea
+					class="form-control"
+					id="body"
+					name="body"
+					rows="5"></textarea>
+			</div>
+			<input type="submit" />
+		</form>
+		<%- include('partials/footer') %>
+	</body>
+</html>

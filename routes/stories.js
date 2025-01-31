@@ -9,12 +9,14 @@ router.get("/allStories", ensureAuth, storyControllers.allStories);
 
 router.post("/createStory", storyControllers.createStory);
 
+router.get("/addStory", storyControllers.addStory);
+
 router.get("/:id", storyControllers.getStory);
 
 // router.put("/markComplete", storyControllers.markComplete);
 
 // router.put("/markIncomplete", storyControllers.markIncomplete);
 
-// router.delete("/deleteTodo", storyControllers.deleteTodo);
+router.delete("/deleteStory/:id", storyControllers.deleteStory);
 
 module.exports = router;

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('partials/head') %>
+	<body>
+		<h1 style="text-transform: capitalize"><%= user.userName %> Stories</h1>
+		<nav><a href="/todos">Todos</a> <a href="/story/">Dashboard</a></nav>
+
+		<form action="/story/editStory/<%= theStory[0]._id %>?_method=PUT" method="POST">
+			<div class="mb-3">
+				<label for="title" class="form-label">Title </label>
+				<input
+					type="text"
+					class="form-control"
+					id="title"
+					name="title"
+                    value="<%= theStory[0].title %>"
+					placeholder="My Title" />
+			</div>
+			<div class="mb-3">
+				<select class="form-select" aria-label="status" name="status">
+					<option value="public" <%= theStory[0].status === "public" ? 'selected' : '' %> >Public</option>
+					<option value="private" <%= theStory[0].status === "private" ? 'selected' : '' %> >Private</option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="body" class="form-label">Example textarea</label>
+				<textarea
+					class="form-control"
+					id="body"
+					name="body"
+					rows="5"><%= theStory[0].body %> </textarea>
+			</div>
+			<input type="submit" />
+		</form>
+		<%- include('partials/footer') %>
+	</body>
+</html>

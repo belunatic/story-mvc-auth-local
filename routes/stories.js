@@ -13,6 +13,10 @@ router.get("/addStory", storyControllers.addStory);
 
 router.get("/:id", storyControllers.getStory);
 
+router.get("/editStory/:id", storyControllers.editStoryData);
+
+router.put("/editStory/:id", storyControllers.editStory);
+
 // router.put("/markComplete", storyControllers.markComplete);
 
 // router.put("/markIncomplete", storyControllers.markIncomplete);

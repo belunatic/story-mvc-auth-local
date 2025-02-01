@@ -61,6 +61,31 @@ module.exports = {
 			console.log(err);
 		}
 	},
+	editStoryData: async (req, res) => {
+		try {
+			const story = await Story.find({ _id: req.params.id });
+			console.log("This is going to happen", story);
+			res.render("editStory.ejs", { theStory: story, user: req.user });
+		} catch (err) {
+			console.log(err);
+		}
+	},
+	editStory: async (req, res) => {
+		try {
+			await Story.findOneAndUpdate(
+				{ _id: req.params.id },
+				{
+					title: req.body.title,
+					status: req.body.status,
+					body: req.body.body,
+				}
+			);
+			console.log("Marked Complete");
+			res.redirect("/story");
+		} catch (err) {
+			console.log(err);
+		}
+	},
 	// markComplete: async (req, res) => {
 	// 	try {
 	// 		await Story.findOneAndUpdate(

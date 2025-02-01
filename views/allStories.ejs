@@ -13,7 +13,12 @@
 						<h5 class="card-title"><%= el.title %></h5>
 						<p class="card-text"><%= el.body.slice(0,100)%>...</p>
 						<div class="d-flex flex-row">
-							<a href="#" class="btn btn-primary">Read More</a>
+							<a href="/<%= el._id %>" class="btn btn-primary">Read More</a>
+							<a
+								href="/story/editStory/<%= el._id%>"
+								class="btn btn-primary ms-2"
+								>Edit</a
+							>
 							<% if (el.author === user.userName) { %>
 							<form
 								class="ms-2"
@@ -21,6 +26,7 @@
 								action="/story/deleteStory/<%=el._id%>?_method=DELETE">
 								<button type="submit" class="btn btn-primary">Delete</button>
 							</form>
+
 							<% } %>
 						</div>
 					</div>
